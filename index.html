@@ -85,13 +85,8 @@
 
             // إضافة تأخير بسيط للتأكد من حفظ البيانات
             setTimeout(() => {
-                // محاولة فتح التطبيق مباشرة
+                // فتح التطبيق مباشرة
                 window.location.href = 'com.wassalni.app://email-confirmed';
-
-                // في حالة فشل فتح التطبيق، التوجيه إلى الموقع بعد ثانيتين
-                setTimeout(() => {
-                    window.location.href = 'http://localhost:5173/';
-                }, 2000);
             }, 500);
         }
     </script>
