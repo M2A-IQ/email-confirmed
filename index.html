@@ -65,7 +65,7 @@
         <div class="success-icon">✔</div>
         <h1>تم تأكيد بريدك الإلكتروني بنجاح!</h1>
         <p>شكراً لتأكيد بريدك الإلكتروني. يمكنك الآن استخدام جميع ميزات تطبيق وصلني.</p>
-        <a href="/" class="btn">العودة إلى التطبيق</a>
+        <a href="#" class="btn" onclick="returnToApp()">العودة إلى التطبيق</a>
     </div>
     <script>
         // التحقق من وجود توكن في الرابط
@@ -74,6 +74,25 @@
         if (accessToken) {
             // تخزين التوكن في localStorage
             localStorage.setItem('supabase.auth.token', accessToken);
+        }
+
+        function returnToApp() {
+            // التأكد من تحديث حالة المصادقة
+            if (accessToken) {
+                localStorage.setItem('emailConfirmed', 'true');
+                localStorage.setItem('supabase.auth.token', accessToken);
+            }
+
+            // إضافة تأخير بسيط للتأكد من حفظ البيانات
+            setTimeout(() => {
+                // محاولة فتح التطبيق مباشرة
+                window.location.href = 'com.wassalni.app://email-confirmed';
+
+                // في حالة فشل فتح التطبيق، التوجيه إلى الموقع بعد ثانيتين
+                setTimeout(() => {
+                    window.location.href = 'http://localhost:5173/';
+                }, 2000);
+            }, 500);
         }
     </script>
 </body>
